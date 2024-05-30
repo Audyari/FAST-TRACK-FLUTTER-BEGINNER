@@ -1,65 +1,16 @@
-Tipe Data di dart
+Final & Const
 
-========================
+=====================
 
-Numbers:
-int: Tipe data integer, contohnya 42, -10, 0.
-double: Tipe data floating-point, contohnya 3.14, -2.5, 0.0.
-Strings:
-String: Tipe data untuk menyimpan teks, contohnya "Halo, Dunia!" atau '42'.
-Booleans:
-bool: Tipe data untuk menyimpan nilai true atau false.
-Lists:
-List: Tipe data untuk menyimpan kumpulan objek, contohnya [1, 2, 3] atau ['a', 'b', 'c'].
-Maps:
-Map: Tipe data untuk menyimpan pasangan key-value, contohnya {'nama': 'John', 'umur': 30}.
-Runes:
-Runes: Tipe data untuk menyimpan kode Unicode.
-Symbols:
-Symbol: Tipe data yang digunakan untuk mengidentifikasi operator atau identifier secara unik.
+Dalam Flutter, kata kunci "final" dan "const" digunakan untuk mendeklarasikan variabel yang nilainya tidak 
+dapat diubah setelah diberikan nilai awal.
 
-=======================================
+===========================
 
-contoh sederhana : 
+final int age = 25;
+final String name = "John Doe";
 
-import 'package:flutter/foundation.dart';
+const double pi = 3.14;
+const String appName = "My App";
 
-void main() {
-  String nama = "Audyari W";
-  int umur = 41;
-  List<int> datanilai = [1, 2, 3, 4, 5];
-  List<String> datanama = ["satu", 'dua', 'tiga'];
-  Map<String, dynamic> test = {
-                'nama': 'John',
-                'umur': 30
-              };
-
-  if (kDebugMode) {
-    print(datanilai);
-    print(umur);
-    print("nama saya $nama & umur saya $umur");
-
-    for (int nilai in datanilai) {
-      print(nilai);
-    }
-
-    print(datanama[0].toLowerCase());
-    print(datanama[1].toUpperCase());
-    print(datanama[2]);
-
-   
-
-    print(test['nama']); // Output: John
-    print(test['umur']); // Output: 30
-
-    // Mencetak karakter smiley face
-    String smileyCh = String.fromCharCodes([0x1F600]);
-    print(smileyCh); // Output: 😀
-
-print('nama'.substring(0, 2));
-
-
-  }
-}
-
-======================================
+=============================

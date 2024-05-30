@@ -1,0 +1,33 @@
+
+
+vs code extension : 
+
+Bracket Pair Colorized
+material icon theme
+sublime text keymap
+flutter 
+dart
+
+=======================
+
+test code sederhana : program_test.dart
+
+
+import 'package:flutter/foundation.dart';
+
+void main(){
+  // ignore: avoid_print
+  String nama = "Audyari W";
+  int umur = 41;
+  var datanilai =[1,2,3,4,5];
+  var datanama=["satu",'dua','tiga'];
+  
+  
+  if (kDebugMode) {
+    print(datanilai);
+    print(umur);
+    print("nama saya $nama & umur saya $umur");
+  }
+}
+
+========================================

@@ -1,68 +1,151 @@
-Function
+Asynchronous
 
-===================
+: https://dartpad.dev/
+==================
 
-1. Fungsi Sederhana:
+Ini memungkinkan aplikasi Anda untuk tetap responsif dan tidak terblokir saat menunggu operasi yang memakan waktu, 
+seperti mengambil data dari server atau melakukan operasi I/O.
 
-int addNumbers(int a, int b) {
-  return a + b;
-}
+================================
 
-void main() {
-  int result = addNumbers(5, 3);
-  print(result); // Output: 8
-}
+1. Future:
 
-
-========================
-
-2. Fungsi Anonim (Lambda):
-
-void main() {
-  var doubleNumber = (int x) => x * 2;
-  int result = doubleNumber(5);
-  print(result); // Output: 10
-}
-
-
-============================
-
-3. Fungsi Callback:
-
-void main() {
-  performOperation(5, 3, add);
-  performOperation(10, 4, subtract);
-}
-
-void performOperation(int a, int b, Function operation) {
-  int result = operation(a, b);
-  print(result);
-}
-
-int add(int a, int b) {
-  return a + b;
-}
-
-int subtract(int a, int b) {
-  return a - b;
-}
-
-
-====================================
-
-
-4. Fungsi Asinkron:
+import 'package:flutter/foundation.dart';
 
 Future<String> fetchData() async {
-  await Future.delayed(Duration(seconds: 2));
-  return 'Data from server';
+  await Future.delayed(const Duration(seconds: 2));
+  return 'Data dari server';
 }
 
 void main() async {
   String data = await fetchData();
-  print(data); // Output: Data from server
+  if (kDebugMode) {
+    print(data);
+  } // Output: Data dari server
 }
 
-===========================
+=================================
+
+2. Async/Await:
+
+Future<String> fetchData() {
+  return Future.delayed(Duration(seconds: 2), () => 'Data dari server');
+}
+
+Future<void> main() async {
+  String data = await fetchData();
+  print(data); // Output: Data dari server
+}
+
+=========================================
+
+3. Stream:
+
+Stream<int> generateNumbers() async* {
+  for (int i = 1; i <= 5; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+void main() {
+  generateNumbers().listen((number) {
+    print(number);
+  });
+}
+
+========================================
+
+4. FutureBuilder 
+
+import 'package:flutter/material.dart';
+
+Future<String> fetchData() async {
+  // Simulasi pengambilan data dari API
+  await Future.delayed(Duration(seconds: 2));
+  return 'Data dari API';
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'FutureBuilder Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('FutureBuilder Example'),
+        ),
+        body: Center(
+          child: FutureBuilder<String>(
+            future: fetchData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!);
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+=========================================
+
+
+5. dan StreamBuilder:
+
+import 'package:flutter/material.dart';
+
+Stream<int> generateNumbers() async* {
+  for (int i = 1; i <= 5; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'StreamBuilder Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('StreamBuilder Example'),
+        ),
+        body: Center(
+          child: StreamBuilder<int>(
+            stream: generateNumbers(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text('Angka: ${snapshot.data}');
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+======================================
 
 

@@ -1,18 +1,68 @@
-Comments
+Function
 
-==============
+===================
 
-kita bisa pindah komen class tertentu
+1. Fungsi Sederhana:
 
-import 'package:flutter/material.dart';
-import 'package:myapp/home_page.dart';
+int addNumbers(int a, int b) {
+  return a + b;
+}
 
-class MusicAppUI extends StatelessWidget {
-  const MusicAppUI({super.key});
+void main() {
+  int result = addNumbers(5, 3);
+  print(result); // Output: 8
+}
 
 
-/// ini ke [HomePage]
+========================
 
-jangan lupa di import dan pake /// [namaclass nya]
+2. Fungsi Anonim (Lambda):
 
-==============================
+void main() {
+  var doubleNumber = (int x) => x * 2;
+  int result = doubleNumber(5);
+  print(result); // Output: 10
+}
+
+
+============================
+
+3. Fungsi Callback:
+
+void main() {
+  performOperation(5, 3, add);
+  performOperation(10, 4, subtract);
+}
+
+void performOperation(int a, int b, Function operation) {
+  int result = operation(a, b);
+  print(result);
+}
+
+int add(int a, int b) {
+  return a + b;
+}
+
+int subtract(int a, int b) {
+  return a - b;
+}
+
+
+====================================
+
+
+4. Fungsi Asinkron:
+
+Future<String> fetchData() async {
+  await Future.delayed(Duration(seconds: 2));
+  return 'Data from server';
+}
+
+void main() async {
+  String data = await fetchData();
+  print(data); // Output: Data from server
+}
+
+===========================
+
+

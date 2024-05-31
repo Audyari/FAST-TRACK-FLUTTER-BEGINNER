@@ -1,16 +1,18 @@
-Final & Const
+Comments
 
-=====================
+==============
 
-Dalam Flutter, kata kunci "final" dan "const" digunakan untuk mendeklarasikan variabel yang nilainya tidak 
-dapat diubah setelah diberikan nilai awal.
+kita bisa pindah komen class tertentu
 
-===========================
+import 'package:flutter/material.dart';
+import 'package:myapp/home_page.dart';
 
-final int age = 25;
-final String name = "John Doe";
+class MusicAppUI extends StatelessWidget {
+  const MusicAppUI({super.key});
 
-const double pi = 3.14;
-const String appName = "My App";
 
-=============================
+/// ini ke [HomePage]
+
+jangan lupa di import dan pake /// [namaclass nya]
+
+==============================

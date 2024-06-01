@@ -1,139 +1,58 @@
-Exceptions ada tangkap eror
+Loop
 
 ===================
 https://dartpad.dev/
 
-1.FlutterError: Exception ini digunakan oleh Flutter sendiri untuk melaporkan error yang terjadi dalam framework.
+For Loop
+While Loop
+Do-While Loop
+For-in Loop
+forEach Loop
+
+==========================
 
 void main() {
-  try {
-    // Kode yang mungkin memicu FlutterError
-    String? name;
-    print(name!
-        .length); // Akan memicu TypeError: 'String?' is not a subtype of 'String'
-  } catch (error) {
-    // Tangani TypeError di sini
-    if (error is TypeError) {
-      print('Terjadi TypeError: ${error.toString()}');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
+  // For loop
+  print('For loop:');
+  for (int i = 0; i < 5; i++) {
+    print('Iterasi ke-$i');
   }
+  print('');
+
+  // While loop
+  print('While loop:');
+  int count = 0;
+  while (count < 3) {
+    print('Iterasi ke-$count');
+    count++;
+  }
+  print('');
+
+  // Do-while loop
+  print('Do-while loop:');
+  count = 0;
+  do {
+    print('Iterasi ke-$count');
+    count++;
+  } while (count < 3);
+  print('');
+
+  // For-in loop
+  print('For-in loop:');
+  List<String> names = ['John', 'Jane', 'Bob'];
+  for (String name in names) {
+    print('Hello, $name!');
+  }
+  print('');
+
+  // forEach loop
+  print('forEach loop:');
+  List<int> numbers = [1, 2, 3, 4, 5];
+  numbers.forEach((number) {
+    print('Number: $number');
+  });
 }
 
 
-=============================
 
-2.StateError: Exception yang terjadi ketika state atau kondisi suatu objek tidak sesuai dengan yang diharapkan.
-
-void main() {
-  try {
-    // Kode yang mungkin memicu StateError
-    List<int> numbers = [];
-    print(numbers.first); // Akan memicu StateError: Tried to read from an empty List
-  } catch (error) {
-    // Tangani StateError di sini
-    if (error is StateError) {
-      print('Terjadi StateError: ${error.message}');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
-  }
-}
-
-=======================================================
-
-3. RangeError: Exception yang terjadi ketika sebuah nilai berada di luar batas yang diizinkan.
-
-void main() {
-  try {
-    // Kode yang mungkin memicu RangeError
-    List<int> numbers = [1, 2, 3];
-    print(numbers[3]); // Akan memicu RangeError: Index out of range: index should be less than 3: 3
-  } catch (error) {
-    // Tangani RangeError di sini
-    if (error is RangeError) {
-      print('Terjadi RangeError: ${error.message}');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
-  }
-}
-
-===============================================
-
-4. ArgumentError: Exception yang terjadi ketika sebuah argumen yang diberikan ke sebuah fungsi tidak valid.
-
-void main() {
-  try {
-    // Kode yang mungkin memicu ArgumentError
-    int result = divide(10, 0);
-    print('Hasil pembagian: $result'); // Menggunakan nilai 'result'
-  } catch (error) {
-    // Tangani ArgumentError di sini
-    if (error is ArgumentError) {
-      print('Terjadi ArgumentError: ${error.message}');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
-  }
-}
-
-int divide(int dividend, int divisor) {
-  if (divisor == 0) {
-    throw ArgumentError.value(divisor, 'divisor', 'Value cannot be null');
-  }
-  return dividend ~/ divisor;
-}
-
-========================================
-5. AssertionError: Exception yang terjadi ketika sebuah pernyataan assert gagal.
-
-void main() {
-  try {
-    // Kode yang mungkin memicu AssertionError
-    assert(1 + 1 == 3, 'Hasil penjumlahan tidak sesuai ekspektasi'); // Akan memicu AssertionError
-    print('Kode setelah assert tidak akan dijalankan');
-  } catch (error) {
-    // Tangani AssertionError di sini
-    if (error is AssertionError) {
-      print('Terjadi AssertionError: ${error.message}');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
-  }
-}
-
-============================================
-
-6. NoSuchMethodError: Exception yang terjadi ketika memanggil sebuah method yang tidak ada.
-
-class Person {
-  String name;
-  int age;
-
-  Person(this.name, this.age);
-
-  void printInfo() {
-    print('Name: $name, Age: $age');
-  }
-}
-
-void main() {
-  try {
-    // Kode yang mungkin memicu NoSuchMethodError
-    Person person = Person('John', 30);
-    person.printInfo(); // Memanggil metode yang ada
-    // person.unknown(); // Memanggil metode yang tidak ada, akan memicu NoSuchMethodError
-  } catch (error) {
-    // Tangani NoSuchMethodError di sini
-    if (error is NoSuchMethodError) {
-      print('Terjadi NoSuchMethodError: $error');
-    } else {
-      print('Terjadi exception lain: $error');
-    }
-  }
-}
-
-
-==========================================
+===========================================

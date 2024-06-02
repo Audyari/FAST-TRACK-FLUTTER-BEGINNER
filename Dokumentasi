@@ -1,58 +1,241 @@
-Loop
+Conditional Expression
 
 ===================
 https://dartpad.dev/
 
-For Loop
-While Loop
-Do-While Loop
-For-in Loop
-forEach Loop
-
-==========================
+1. If-Else Statement:
 
 void main() {
-  // For loop
-  print('For loop:');
-  for (int i = 0; i < 5; i++) {
-    print('Iterasi ke-$i');
-  }
-  print('');
+  int age = 18;
 
-  // While loop
-  print('While loop:');
+  if (age >= 18) {
+    print('You are an adult!');
+  } else {
+    print('You are a minor.');
+  }
+}
+
+=====================================
+2. Ternary Operator:
+
+void main() {
+  int age = 18;
+  String message = (age >= 18) ? 'You are an adult!' : 'You are a minor.';
+  print(message);
+}
+
+=======================================
+3. Null Aware Operator (??)
+
+void main() {
+  String? nama;
+  String pesan = nama ?? 'Tamu';
+  print(pesan); // Output: Tamu
+}
+
+=========================================
+4. Conditional Expressions dalam Widget:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Contoh Conditional Expressions',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool isLoggedIn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Contoh Conditional Expressions'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Menggunakan Conditional Expression untuk menampilkan widget yang berbeda
+            isLoggedIn
+                ? Text('Selamat datang, Pengguna!')
+                : Text('Silakan masuk untuk melanjutkan.'),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  isLoggedIn = !isLoggedIn;
+                });
+              },
+              child: Text(isLoggedIn ? 'Keluar' : 'Masuk'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+=====================================
+5. Conditional Expressions dalam Properties:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Contoh Conditional Expressions dalam Properties',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool isDarkMode = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Contoh Conditional Expressions'),
+        backgroundColor: isDarkMode ? Colors.grey[900] : Colors.blue,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.lightbulb,
+              color: isDarkMode ? Colors.yellow : Colors.grey,
+              size: 100.0,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              'Mode Gelap: ${isDarkMode.toString()}',
+              style: TextStyle(
+                color: isDarkMode ? Colors.white : Colors.black,
+                fontSize: 18.0,
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  isDarkMode = !isDarkMode;
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: isDarkMode ? Colors.grey[900] : Colors.blue,
+                foregroundColor: isDarkMode ? Colors.white : Colors.white,
+              ),
+              child: Text('Ubah Mode'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+================================================
+6. Conditional Expressions dalam Fungsi:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Conditional Expressions Example',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   int count = 0;
-  while (count < 3) {
-    print('Iterasi ke-$count');
-    count++;
+
+  String getCountText(int count) {
+    return count == 0 ? 'Belum ada data' : 'Jumlah: $count';
   }
-  print('');
 
-  // Do-while loop
-  print('Do-while loop:');
-  count = 0;
-  do {
-    print('Iterasi ke-$count');
-    count++;
-  } while (count < 3);
-  print('');
-
-  // For-in loop
-  print('For-in loop:');
-  List<String> names = ['John', 'Jane', 'Bob'];
-  for (String name in names) {
-    print('Hello, $name!');
+  Widget buildCountWidget(int count) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: count % 2 == 0 ? Colors.blue : Colors.green,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Text(
+        getCountText(count),
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
   }
-  print('');
 
-  // forEach loop
-  print('forEach loop:');
-  List<int> numbers = [1, 2, 3, 4, 5];
-  numbers.forEach((number) {
-    print('Number: $number');
-  });
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Conditional Expressions Example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildCountWidget(count),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  count++;
+                });
+              },
+              child: Text('Tambah Data'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 
-
-===========================================
+==========================

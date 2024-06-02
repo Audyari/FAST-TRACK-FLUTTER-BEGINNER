@@ -1,259 +1,148 @@
-Conditional Expression
+Collections Tipe Data
 
 ===================
 https://dartpad.dev/
 
-1. If-Else Statement:
+1. List:
 
 void main() {
-  int age = 18;
+  // Membuat List
+  List<String> names = ['Alice', 'Bob', 'Charlie'];
 
-  if (age >= 18) {
-    print('You are an adult!');
-  } else {
-    print('You are a minor.');
+  // Mengakses elemen List
+  print(names[0]); // Output: Alice
+  print(names[1]); // Output: Bob
+  print(names[2]); // Output: Charlie
+
+  // Menambah elemen ke List
+  names.add('David');
+  print(names); // Output: [Alice, Bob, Charlie, David]
+
+  // Menghapus elemen dari List
+  names.remove('Bob');
+  print(names); // Output: [Alice, Charlie, David]
+
+  // Melakukan iterasi pada List
+  for (var name in names) {
+    print(name);
   }
+  // Output:
+  // Alice
+  // Charlie
+  // David
+
+  // Menggunakan method List lainnya
+  print(names.length); // Output: 3
+  print(names.contains('Alice')); // Output: true
+  print(names.indexOf('Charlie')); // Output: 1
+  names.sort();
+  print(names); // Output: [Alice, Charlie, David]
 }
 
-=====================================
-2. Ternary Operator:
+=========================================================
+2. Map:
 
 void main() {
-  int age = 18;
-  String message = (age >= 18) ? 'You are an adult!' : 'You are a minor.';
-  print(message);
-}
-
-=======================================
-3. Null Aware Operator (??)
-
-void main() {
-  String? nama;
-  String pesan = nama ?? 'Tamu';
-  print(pesan); // Output: Tamu
-}
-
-=========================================
-4. Conditional Expressions dalam Widget:
-
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Contoh Conditional Expressions',
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool isLoggedIn = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Contoh Conditional Expressions'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Menggunakan Conditional Expression untuk menampilkan widget yang berbeda
-            isLoggedIn
-                ? Text('Selamat datang, Pengguna!')
-                : Text('Silakan masuk untuk melanjutkan.'),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  isLoggedIn = !isLoggedIn;
-                });
-              },
-              child: Text(isLoggedIn ? 'Keluar' : 'Masuk'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-=====================================
-5. Conditional Expressions dalam Properties:
-
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Contoh Conditional Expressions dalam Properties',
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool isDarkMode = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Contoh Conditional Expressions'),
-        backgroundColor: isDarkMode ? Colors.grey[900] : Colors.blue,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.lightbulb,
-              color: isDarkMode ? Colors.yellow : Colors.grey,
-              size: 100.0,
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'Mode Gelap: ${isDarkMode.toString()}',
-              style: TextStyle(
-                color: isDarkMode ? Colors.white : Colors.black,
-                fontSize: 18.0,
-              ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  isDarkMode = !isDarkMode;
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: isDarkMode ? Colors.grey[900] : Colors.blue,
-                foregroundColor: isDarkMode ? Colors.white : Colors.white,
-              ),
-              child: Text('Ubah Mode'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-================================================
-6. Conditional Expressions dalam Fungsi:
-
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Conditional Expressions Example',
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int count = 0;
-
-  String getCountText(int count) {
-    return count == 0 ? 'Belum ada data' : 'Jumlah: $count';
-  }
-
-  Widget buildCountWidget(int count) {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: count % 2 == 0 ? Colors.blue : Colors.green,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Text(
-        getCountText(count),
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Conditional Expressions Example'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildCountWidget(count),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: Text('Tambah Data'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-==========================
-
-7. switch statement,
-
-void main() {
-  final result = processInput('apple');
-  print(result); // Output: Processing apple
-}
-
-String processInput(String input) {
-  return switch (input) {
-    'apple' => 'Processing apple',
-    'banana' => 'Processing banana',
-    'orange' => 'Processing orange',
-    _ => 'Unknown input',
+  // Membuat Map
+  Map<String, int> ages = {
+    'Alice': 25,
+    'Bob': 30,
+    'Charlie': 35,
   };
+
+  // Mengakses nilai berdasarkan key
+  print(ages['Alice']); // Output: 25
+  print(ages['Bob']); // Output: 30
+  print(ages['Charlie']); // Output: 35
+
+  // Menambah/Mengubah pasangan key-value
+  ages['David'] = 40;
+  ages['Alice'] = 26;
+  print(ages); // Output: {Alice: 26, Bob: 30, Charlie: 35, David: 40}
+
+  // Menghapus pasangan key-value
+  ages.remove('Bob');
+  print(ages); // Output: {Alice: 26, Charlie: 35, David: 40}
+
+  // Melakukan iterasi pada Map
+  for (var entry in ages.entries) {
+    print('${entry.key}: ${entry.value}');
+  }
+  // Output:
+  // Alice: 26
+  // Charlie: 35
+  // David: 40
+
+  // Menggunakan method Map lainnya
+  print(ages.length); // Output: 3
+  print(ages.containsKey('Charlie')); // Output: true
+  print(ages.containsValue(35)); // Output: true
+  print(ages.keys); // Output: (Alice, Charlie, David)
+  print(ages.values); // Output: (26, 35, 40)
 }
+
+=============================================
+
+3.Set:
+
+void main() {
+  // Membuat Set
+  Set<String> fruits = {'apple', 'banana', 'orange'};
+
+  // Menambah elemen ke Set
+  fruits.add('grape');
+  print(fruits); // Output: {apple, banana, orange, grape}
+
+  // Menghapus elemen dari Set
+  fruits.remove('banana');
+  print(fruits); // Output: {apple, orange, grape}
+
+  // Melakukan iterasi pada Set
+  for (var fruit in fruits) {
+    print(fruit);
+  }
+  // Output:
+  // apple
+  // orange
+  // grape
+
+  // Menggunakan method Set lainnya
+  print(fruits.length); // Output: 3
+  print(fruits.contains('apple')); // Output: true
+  print(fruits.union({'watermelon', 'kiwi'})); // Output: {apple, orange, grape, watermelon, kiwi}
+  print(fruits.intersection({'grape', 'kiwi'})); // Output: {grape}
+  print(fruits.difference({'apple', 'kiwi'})); // Output: {orange, grape}
+}
+
+=====================================
+
+Iterable:
+
+void main() {
+  // Membuat Iterable
+  Iterable<int> numbers = [1, 2, 3, 4, 5];
+
+  // Melakukan operasi pada Iterable
+  Iterable<int> doubledNumbers = numbers.map((n) => n * 2);
+  print(doubledNumbers); // Output: (2, 4, 6, 8, 10)
+
+  Iterable<int> evenNumbers = numbers.where((n) => n.isEven);
+  print(evenNumbers); // Output: (2, 4)
+
+  int sum = numbers.reduce((value, element) => value + element);
+  print(sum); // Output: 15
+
+  // Mengkonversi Iterable menjadi List
+  List<int> numbersList = numbers.toList();
+  print(numbersList); // Output: [1, 2, 3, 4, 5]
+
+  // Menggunakan method Iterable lainnya
+  print(numbers.contains(3)); // Output: true
+  print(numbers.elementAt(2)); // Output: 3
+  print(numbers.first); // Output: 1
+  print(numbers.last); // Output: 5
+  print(numbers.length); // Output: 5
+}
+
 
 ======================================

@@ -239,3 +239,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 ==========================
+
+7. switch statement,
+
+void main() {
+  final result = processInput('apple');
+  print(result); // Output: Processing apple
+}
+
+String processInput(String input) {
+  return switch (input) {
+    'apple' => 'Processing apple',
+    'banana' => 'Processing banana',
+    'orange' => 'Processing orange',
+    _ => 'Unknown input',
+  };
+}
+
+======================================

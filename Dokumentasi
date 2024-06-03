@@ -1,24 +1,243 @@
-Object-Oriented Programming : 
+class termasuk dalam konsep Object-Oriented Programming (OOP).
 
-OOP adalah singkatan dari Object-Oriented Programming, yang merupakan sebuah paradigma pemrograman di mana segala sesuatu direpresentasikan sebagai objek.
+Class adalah bagian fundamental dari OOP dan merupakan dasar untuk membangun objek.
 
 https://dartpad.dev/
 
-=====================
+=======================
 
-1. Encapsulation: 
-Menyembunyikan detail implementasi dari objek dan hanya menyediakan antarmuka (interface) untuk berinteraksi dengan objek tersebut. Hal ini memungkinkan perubahan dalam implementasi tanpa mempengaruhi kode yang menggunakan objek.
+1. Encapsulation: Class menerapkan konsep enkapsulasi dengan menyembunyikan detail implementasi internal dari objek dan hanya 
+menyediakan antarmuka publik untuk berinteraksi dengannya.
 
-2.Abstraction: 
-Menyediakan hanya informasi yang diperlukan dan menyembunyikan detail yang kompleks. Abstraksi memungkinkan Anda untuk berfokus pada apa yang dilakukan objek, bukan bagaimana objek melakukannya.
+class BankAccount {
+  // Private attribute
+  double _balance = 0.0;
 
-3.Inheritance: 
-Kemampuan untuk membuat kelas baru berdasarkan kelas yang sudah ada. Kelas baru ini dapat mewarisi atribut dan perilaku dari kelas induk.
+  // Getter method
+  double getBalance() {
+    return _balance;
+  }
 
-4.Polymorphism: 
-Kemampuan objek untuk mengambil berbagai bentuk. Objek dengan jenis yang berbeda dapat digunakan secara interchangeable jika mereka memiliki antarmuka (interface) yang sama.
+  // Deposit method
+  void deposit(double amount) {
+    _balance += amount;
+  }
 
-5.Composition: 
-Membangun objek kompleks dengan menyusun objek-objek yang lebih sederhana. Komposisi memungkinkan Anda untuk membuat model yang lebih fleksibel dan modular.
+  // Withdraw method
+  void withdraw(double amount) {
+    if (_balance >= amount) {
+      _balance -= amount;
+    } else {
+      print('Insufficient funds.');
+    }
+  }
+}
 
-================================
+void main() {
+  // Create a BankAccount object
+  BankAccount account = BankAccount();
+
+  // Deposit some money
+  account.deposit(1000.0);
+  print('Balance: \$${account.getBalance()}'); // Output: Balance: $1000.0
+
+  // Withdraw some money
+  account.withdraw(500.0);
+  print('Balance: \$${account.getBalance()}'); // Output: Balance: $500.0
+
+  // Try to withdraw more than the balance
+  account.withdraw(600.0); // Output: Insufficient funds.
+  print('Balance: \$${account.getBalance()}'); // Output: Balance: $500.0
+}
+
+=========================================
+
+2.Abstraction: Class dapat menyediakan abstraksi dengan mendefinisikan antarmuka (interface) umum tanpa perlu mengungkapkan detail implementasi.
+
+Struktur filenya akan terlihat seperti ini ada 4 file :
+
+lib/
+  main.dart
+  shape.dart
+  circle.dart
+  rectangle.dart
+
+1.shape.dart:
+abstract class Shape {
+  double getArea();
+  double getPerimeter();
+}
+=============
+2.circle.dart:
+import 'shape.dart';
+
+class Circle implements Shape {
+  double radius;
+
+  Circle(this.radius);
+
+  @override
+  double getArea() {
+    return 3.14 * radius * radius;
+  }
+
+  @override
+  double getPerimeter() {
+    return 2 * 3.14 * radius;
+  }
+}
+================
+3.rectangle.dart:
+import 'shape.dart';
+
+class Rectangle implements Shape {
+  double width;
+  double height;
+
+  Rectangle(this.width, this.height);
+
+  @override
+  double getArea() {
+    return width * height;
+  }
+
+  @override
+  double getPerimeter() {
+    return 2 * (width + height);
+  }
+}
+
+==================
+4. main.dart:
+import 'shape.dart';
+import 'circle.dart';
+import 'rectangle.dart';
+
+void main() {
+  Shape circle = Circle(5.0);
+  print('Circle area: ${circle.getArea()}');
+  print('Circle perimeter: ${circle.getPerimeter()}');
+
+  Shape rectangle = Rectangle(4.0, 6.0);
+  print('Rectangle area: ${rectangle.getArea()}');
+  print('Rectangle perimeter: ${rectangle.getPerimeter()}');
+}
+
+
+==========
+
+** Inheritance: Class dapat mewarisi sifat dan perilaku dari class induk (superclass) menggunakan konsep pewarisan.
+
+// parent class
+class Animal {
+  String name;
+  int age;
+
+  Animal(this.name, this.age);
+
+  void makeSound() {
+    print('The animal makes a sound');
+  }
+}
+
+// child class
+class Dog extends Animal {
+  String breed;
+
+  Dog(String name, int age, this.breed) : super(name, age);
+
+  @override
+  void makeSound() {
+    print('The dog barks');
+  }
+
+  void wagTail() {
+    print('The dog wags its tail');
+  }
+}
+
+// child class
+class Cat extends Animal {
+  bool isFriendly;
+
+  Cat(String name, int age, this.isFriendly) : super(name, age);
+
+  @override
+  void makeSound() {
+    print('The cat meows');
+  }
+
+  void scratchtPost() {
+    print('The cat scratches the post');
+  }
+}
+
+void main() {
+  // create instances of the child classes
+  Dog myDog = Dog('Buddy', 5, 'Labrador');
+  Cat myCat = Cat('Whiskers', 3, true);
+
+  // access properties and methods from the parent class
+  print('Dog name: ${myDog.name}');
+  print('Cat age: ${myCat.age}');
+  myDog.makeSound();
+  myCat.makeSound();
+
+  // access methods from the child classes
+  myDog.wagTail();
+  myCat.scratchtPost();
+}
+
+==========================
+*** Polymorphism: Objek dari class turunan dapat digunakan sebagai objek dari class induk karena konsep polimorfisme.
+
+// Parent class
+abstract class Shape {
+  double getArea();
+}
+
+// Child class 1
+class Circle extends Shape {
+  double radius;
+
+  Circle(this.radius);
+
+  @override
+  double getArea() {
+    return 3.14 * radius * radius;
+  }
+}
+
+// Child class 2
+class Rectangle extends Shape {
+  double width;
+  double height;
+
+  Rectangle(this.width, this.height);
+
+  @override
+  double getArea() {
+    return width * height;
+  }
+}
+
+void main() {
+  // Create objects of different shapes
+  Shape circle = Circle(5.0);
+  Shape rectangle = Rectangle(4.0, 6.0);
+
+  // Call the getArea() method on the shapes
+  print('Circle area: ${circle.getArea()}');
+  print('Rectangle area: ${rectangle.getArea()}');
+
+  // Store the shapes in a list
+  List<Shape> shapes = [circle, rectangle];
+
+  // Iterate through the list and call getArea()
+  for (Shape shape in shapes) {
+    print('Area: ${shape.getArea()}');
+  }
+}
+
+=============================
+

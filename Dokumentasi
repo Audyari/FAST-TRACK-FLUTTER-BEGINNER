@@ -1,43 +1,141 @@
-Null Safety
+1. Portfolio:
 
-===================
-https://dartpad.dev/
+Difficulty: 1/10
+Resume Worthy: 0/10
+Learning Value: 2/10
+Coolness: 3/10
 
-Null Safety adalah fitur baru yang diperkenalkan di Dart 2.12, yang rilis pada Februari 2021. Fitur ini 
-bertujuan untuk membantu mengatasi masalah null reference exceptions (NullReferenceException) yang sering
-terjadi saat mengembangkan aplikasi Flutter.
+2. Build Your Own Git:
 
-1: Mengakses properti dari objek yang dapat menjadi null
+Difficulty: 7/10
+Resume Worthy: 6/10
+Learning Value: 9/10
+Coolness: 4/10
 
-String? name = getUserName();
-print(name?.length ?? 0); // Menggunakan operator null-aware untuk mengakses properti length dengan aman
+3. To-Do List App:
 
-=============================================
+Difficulty: 2/10
+Resume Worthy: 2/10
+Learning Value: 4/10
+Coolness: 4/10
 
-2: Menggunakan Late Initialization
+4. AI Girlfriend/Boyfriend:
 
-void greetPerson({required String name, String? title}) {
-  print('Hello, $title $name!');
-}
+Difficulty: 6/10
+Resume Worthy: 7/10
+Learning Value: 6/10
+Coolness: -1/10
 
-void main() {
-  greetPerson(name: 'John'); // OK
-  greetPerson(title: 'Mr', name: 'John'); // OK
-  greetPerson(name: 'Alice'); // OK
-}
+5.Smart Mirror:
 
-==============================================
+Difficulty: 5/10
+Resume Worthy: 6/10
+Learning Value: 8/10
+Coolness: 10/10
 
-3: Menggunakan Required Parameters
+6. Personal Finance Tracker:
 
-void greetPerson({required String name, String? title}) {
-  print('Hello, $title $name!');
-}
+Difficulty: 4/10 (5/10 with Plaid)
+Resume Worthy: 5/10
+Learning Value: 5/10
+Coolness: 5/10 (8/10 for finance bros)
 
-void main() {
-  greetPerson(name: 'John'); // OK
-  greetPerson(title: 'Mr', name: 'John'); // OK
-  greetPerson(name: 'Alice'); // OK
-}
+7. Calculator:
 
-========================================
+Difficulty: 2/10
+Resume Worthy: 2/10
+Learning Value: 3/10
+Coolness: 2/10
+
+8. Build Your Own Neural Network:
+
+Difficulty: 7/10
+Resume Worthy: 4/10
+Learning Value: 9/10
+Coolness: 9/10
+
+9. Realtime Chat Application:
+
+Difficulty: 4/10
+Resume Worthy: 5/10
+Learning Value: 7/10
+Coolness: 7/10
+
+10.Build Your Own Redis:
+
+Difficulty: 9/10
+Resume Worthy: 8/10
+Learning Value: 10/10
+Coolness: 5/10
+
+11.Random Quote Generator:
+
+Difficulty: 1/10
+Resume Worthy: 2/10
+Learning Value: 3/10
+Coolness: 3/10
+
+12.Algorithm Visualizer:
+
+Difficulty: 7/10
+Resume Worthy: 8/10
+Learning Value: 10/10
+Coolness: 2/10
+
+13.Travel Booking System:
+
+Difficulty: 4/10
+Resume Worthy: 7/10
+Learning Value: 6/10
+Coolness: 7/10
+
+14.Quiz Program:
+
+Difficulty: 2/10
+Resume Worthy: 1/10
+Learning Value: 2/10
+Coolness: 1/10
+
+15.Build Your Own BitTorrent:
+
+Difficulty: 8/10
+Resume Worthy: 7/10
+Learning Value: 10/10
+Coolness: 5/10
+
+16.HTTP Server:
+
+Difficulty: 5/10
+Resume Worthy: 4/10
+Learning Value: 7/10
+Coolness: 8/10
+
+17.Realtime Editor:
+
+Difficulty: 8/10
+Resume Worthy: 9/10
+Learning Value: 10/10
+Coolness: 10/10
+
+18.Chat Bot:
+
+Difficulty: 4/10
+Resume Worthy: 6/10
+Learning Value: 8/10
+Coolness: 7/10
+
+19.Video Game:
+
+Difficulty: 7/10
+Resume Worthy: Depends on job
+Learning Value: 9/10
+Coolness: 11/10
+
+20.QR Code Generator:
+
+Difficulty: 2/10
+Resume Worthy: 2/10
+Learning Value: 2/10
+Coolness: 12/10
+
+=======================

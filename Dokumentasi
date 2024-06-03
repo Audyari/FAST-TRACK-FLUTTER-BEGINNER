@@ -1,141 +1,24 @@
-1. Portfolio:
+Object-Oriented Programming : 
 
-Difficulty: 1/10
-Resume Worthy: 0/10
-Learning Value: 2/10
-Coolness: 3/10
+OOP adalah singkatan dari Object-Oriented Programming, yang merupakan sebuah paradigma pemrograman di mana segala sesuatu direpresentasikan sebagai objek.
 
-2. Build Your Own Git:
+https://dartpad.dev/
 
-Difficulty: 7/10
-Resume Worthy: 6/10
-Learning Value: 9/10
-Coolness: 4/10
+=====================
 
-3. To-Do List App:
+1. Encapsulation: 
+Menyembunyikan detail implementasi dari objek dan hanya menyediakan antarmuka (interface) untuk berinteraksi dengan objek tersebut. Hal ini memungkinkan perubahan dalam implementasi tanpa mempengaruhi kode yang menggunakan objek.
 
-Difficulty: 2/10
-Resume Worthy: 2/10
-Learning Value: 4/10
-Coolness: 4/10
+2.Abstraction: 
+Menyediakan hanya informasi yang diperlukan dan menyembunyikan detail yang kompleks. Abstraksi memungkinkan Anda untuk berfokus pada apa yang dilakukan objek, bukan bagaimana objek melakukannya.
 
-4. AI Girlfriend/Boyfriend:
+3.Inheritance: 
+Kemampuan untuk membuat kelas baru berdasarkan kelas yang sudah ada. Kelas baru ini dapat mewarisi atribut dan perilaku dari kelas induk.
 
-Difficulty: 6/10
-Resume Worthy: 7/10
-Learning Value: 6/10
-Coolness: -1/10
+4.Polymorphism: 
+Kemampuan objek untuk mengambil berbagai bentuk. Objek dengan jenis yang berbeda dapat digunakan secara interchangeable jika mereka memiliki antarmuka (interface) yang sama.
 
-5.Smart Mirror:
+5.Composition: 
+Membangun objek kompleks dengan menyusun objek-objek yang lebih sederhana. Komposisi memungkinkan Anda untuk membuat model yang lebih fleksibel dan modular.
 
-Difficulty: 5/10
-Resume Worthy: 6/10
-Learning Value: 8/10
-Coolness: 10/10
-
-6. Personal Finance Tracker:
-
-Difficulty: 4/10 (5/10 with Plaid)
-Resume Worthy: 5/10
-Learning Value: 5/10
-Coolness: 5/10 (8/10 for finance bros)
-
-7. Calculator:
-
-Difficulty: 2/10
-Resume Worthy: 2/10
-Learning Value: 3/10
-Coolness: 2/10
-
-8. Build Your Own Neural Network:
-
-Difficulty: 7/10
-Resume Worthy: 4/10
-Learning Value: 9/10
-Coolness: 9/10
-
-9. Realtime Chat Application:
-
-Difficulty: 4/10
-Resume Worthy: 5/10
-Learning Value: 7/10
-Coolness: 7/10
-
-10.Build Your Own Redis:
-
-Difficulty: 9/10
-Resume Worthy: 8/10
-Learning Value: 10/10
-Coolness: 5/10
-
-11.Random Quote Generator:
-
-Difficulty: 1/10
-Resume Worthy: 2/10
-Learning Value: 3/10
-Coolness: 3/10
-
-12.Algorithm Visualizer:
-
-Difficulty: 7/10
-Resume Worthy: 8/10
-Learning Value: 10/10
-Coolness: 2/10
-
-13.Travel Booking System:
-
-Difficulty: 4/10
-Resume Worthy: 7/10
-Learning Value: 6/10
-Coolness: 7/10
-
-14.Quiz Program:
-
-Difficulty: 2/10
-Resume Worthy: 1/10
-Learning Value: 2/10
-Coolness: 1/10
-
-15.Build Your Own BitTorrent:
-
-Difficulty: 8/10
-Resume Worthy: 7/10
-Learning Value: 10/10
-Coolness: 5/10
-
-16.HTTP Server:
-
-Difficulty: 5/10
-Resume Worthy: 4/10
-Learning Value: 7/10
-Coolness: 8/10
-
-17.Realtime Editor:
-
-Difficulty: 8/10
-Resume Worthy: 9/10
-Learning Value: 10/10
-Coolness: 10/10
-
-18.Chat Bot:
-
-Difficulty: 4/10
-Resume Worthy: 6/10
-Learning Value: 8/10
-Coolness: 7/10
-
-19.Video Game:
-
-Difficulty: 7/10
-Resume Worthy: Depends on job
-Learning Value: 9/10
-Coolness: 11/10
-
-20.QR Code Generator:
-
-Difficulty: 2/10
-Resume Worthy: 2/10
-Learning Value: 2/10
-Coolness: 12/10
-
-=======================
+================================

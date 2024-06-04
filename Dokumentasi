@@ -1,60 +1,48 @@
-Inheritance & Abstract Class
-
+Mixin di Flutter
 
 
 https://dartpad.dev/
 
 =======================
 
-Inheritance adalah konsep di mana sebuah class baru dapat diturunkan (inherited) dari class yang sudah ada.
+Mixin di Flutter adalah sebuah konsep yang memungkinkan kita untuk menyertakan fungsionalitas dari satu class ke class lain tanpa perlu 
+menggunakan pewarisan (inheritance).
 
+Berikut adalah penjelasan singkat tentang Mixin di Flutter:
+
+1. Definisi: Mixin adalah sebuah class yang berisi metode dan properti yang dapat "dicampur" (mixed-in) ke dalam class lain. Mixin tidak dapat diinstansiasi secara langsung.
+2. Kegunaan: Mixin memungkinkan kita untuk menambahkan fungsionalitas ke sebuah class tanpa perlu menggunakan pewarisan. Ini berguna ketika kita ingin menambahkan fungsionalitas yang tidak terkait erat dengan hierarki pewarisan.
+3. Implementasi: Untuk menggunakan Mixin, kita perlu mendefinisikan Mixin sebagai class biasa, lalu menggunakannya dengan keyword with saat mendefinisikan class lain.
+
+contoh code : 
+
+// Definisi class Animal
 class Animal {
   void eat() {
     print('Eating...');
   }
 }
 
-class Dog extends Animal {
-  void bark() {
-    print('Woof!');
+// Definisi Mixin
+mixin Flyable {
+  void fly() {
+    print('Flying...');
+  }
+}
+
+// Definisi class yang menggunakan Mixin
+class Bird extends Animal with Flyable {
+  void chirp() {
+    print('Chirp!');
   }
 }
 
 void main() {
-  Dog dog = Dog();
-  dog.eat(); // Memanggil method dari superclass
-  dog.bark(); // Memanggil method dari subclass
+  Bird bird = Bird();
+  bird.eat(); // Memanggil method dari class Animal
+  bird.fly(); // Memanggil method dari Mixin Flyable
+  bird.chirp(); // Memanggil method dari class Bird
 }
 
-============================================
+========================================================
 
-Abstract class adalah class yang tidak dapat diinstansiasi (tidak dapat dibuat objeknya).
-
-abstract class Shape {
-  double area();
-  void draw();
-}
-
-class Circle extends Shape {
-  double radius;
-
-  Circle(this.radius);
-
-  @override
-  double area() {
-    return 3.14 * radius * radius;
-  }
-
-  @override
-  void draw() {
-    print('Drawing a circle...');
-  }
-}
-
-void main() {
-  Circle circle = Circle(5.0);
-  print('Area: ${circle.area()}');
-  circle.draw();
-}
-
-========================================

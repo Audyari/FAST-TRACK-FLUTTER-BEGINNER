@@ -1,4 +1,4 @@
-Hello World di Flutter
+02 Widget Dasar
 
 "preview UI" 
 
@@ -6,7 +6,21 @@ https://dartpad.dev/
 
 =======================
 
+1. Text: Widget untuk menampilkan teks. Dapat diatur gaya, ukuran, dan properti lainnya.
+2. Image: Widget untuk menampilkan gambar. Dapat menggunakan gambar lokal atau gambar dari internet.
+3. Icon: Widget untuk menampilkan ikon. Flutter menyediakan banyak ikon bawaan.
+4. Scaffold: Widget dasar untuk membuat struktur halaman aplikasi, termasuk AppBar, Body, dan BottomNavigationBar.
+5. Column dan Row: Widget untuk mengatur tata letak elemen secara vertikal dan horizontal.
+6. Container: Widget untuk membungkus elemen lain dan memberikan styling, padding, margin, dan properti lainnya.
+7. Button: Widget untuk membuat tombol yang dapat disentuh pengguna.
+
+===========================
+
+contoh code : 
+
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:logger/logger.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,24 +34,86 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hello World',
       home: Scaffold(
+        backgroundColor: kBackgroundColor,
         appBar: AppBar(
           title: const Text('Hello World'),
-        ),
-        body: const Center(
-          child: Text(
-            'Hello, World!',
-            style: TextStyle(fontSize: 24.0),
+          centerTitle: true,
+          backgroundColor: kAppBarColor,
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: _handleMenuButtonPress,
           ),
         ),
+        body: const Center(
+          child: HelloWorldWidget(),
+        ),
+      ),
+    );
+  }
+
+  void _handleMenuButtonPress() {
+    // Aksi yang dilakukan saat tombol menu ditekan
+  }
+}
+
+class HelloWorldWidget extends StatelessWidget {
+  const HelloWorldWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      height: 300,
+      color: Colors.blue,
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Hello World',
+            style: kHelloWorldTextStyle,
+          ),
+          SizedBox(height: 16.0),
+          ElevatedButtonWidget(),
+        ],
       ),
     );
   }
 }
 
+class ElevatedButtonWidget extends StatelessWidget {
+  const ElevatedButtonWidget({super.key});
 
-=============================================
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kElevatedButtonColor,
+        textStyle: kElevatedButtonTextStyle,
+      ),
+      onPressed: _handleElevatedButtonPress,
+      child: const Text('Elevated Button'),
+    );
+  }
 
-1. MaterialApp
-2. Scaffold
+  void _handleElevatedButtonPress() {
+    Logger().i("Tombol Evaluasi ditekan!");
+  }
+}
 
-=================================
+// Konstanta
+const kBackgroundColor = Color.fromARGB(126, 83, 49, 136);
+const kAppBarColor = Color.fromARGB(137, 83, 156, 23);
+const kHelloWorldTextStyle = TextStyle(
+  fontSize: 24.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+const kElevatedButtonColor = Colors.green;
+const kElevatedButtonTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 10,
+  fontStyle: FontStyle.normal,
+);
+
+
+=====================================

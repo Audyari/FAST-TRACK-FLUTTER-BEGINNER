@@ -1,48 +1,75 @@
-Mixin di Flutter
+Enum di Flutter
 
 
 https://dartpad.dev/
 
 =======================
 
-Mixin di Flutter adalah sebuah konsep yang memungkinkan kita untuk menyertakan fungsionalitas dari satu class ke class lain tanpa perlu 
-menggunakan pewarisan (inheritance).
+Enum (singkatan dari "enumeration") adalah sebuah tipe data yang memungkinkan kita untuk membuat sekumpulan nilai konstan yang terdefinisi.
+Enum biasanya digunakan untuk mewakili set pilihan atau status yang terbatas.
 
-Berikut adalah penjelasan singkat tentang Mixin di Flutter:
 
-1. Definisi: Mixin adalah sebuah class yang berisi metode dan properti yang dapat "dicampur" (mixed-in) ke dalam class lain. Mixin tidak dapat diinstansiasi secara langsung.
-2. Kegunaan: Mixin memungkinkan kita untuk menambahkan fungsionalitas ke sebuah class tanpa perlu menggunakan pewarisan. Ini berguna ketika kita ingin menambahkan fungsionalitas yang tidak terkait erat dengan hierarki pewarisan.
-3. Implementasi: Untuk menggunakan Mixin, kita perlu mendefinisikan Mixin sebagai class biasa, lalu menggunakannya dengan keyword with saat mendefinisikan class lain.
+contoh 1 : 
 
-contoh code : 
-
-// Definisi class Animal
-class Animal {
-  void eat() {
-    print('Eating...');
-  }
-}
-
-// Definisi Mixin
-mixin Flyable {
-  void fly() {
-    print('Flying...');
-  }
-}
-
-// Definisi class yang menggunakan Mixin
-class Bird extends Animal with Flyable {
-  void chirp() {
-    print('Chirp!');
-  }
+enum DayOfWeek {
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday
 }
 
 void main() {
-  Bird bird = Bird();
-  bird.eat(); // Memanggil method dari class Animal
-  bird.fly(); // Memanggil method dari Mixin Flyable
-  bird.chirp(); // Memanggil method dari class Bird
+  DayOfWeek today = DayOfWeek.monday;
+  print(today); // Output: DayOfWeek.monday
 }
 
-========================================================
+==========================================
 
+contoh 2 : 
+
+enum DayOfWeek {
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday
+}
+
+
+void printDayOfWeek(DayOfWeek day) {
+  print('Today is $day');
+}
+
+void main() {
+  DayOfWeek today = DayOfWeek.monday;
+  print(today); // Output: DayOfWeek.monday
+  
+  switch (today) {
+  case DayOfWeek.monday:
+    print('It\'s Monday');
+    break;
+  case DayOfWeek.tuesday:
+    print('It\'s Tuesday');
+    break;
+  // ... dan seterusnya
+  default:
+    print('Unknown day');
+}
+  
+  printDayOfWeek(DayOfWeek.wednesday); // Output: Today is DayOfWeek.wednesday
+  
+}
+
+==========================================
+
+1. Kemudahan Pemeliharaan: Enum memungkinkan kita untuk mengelola set pilihan atau status yang terbatas dengan lebih terstruktur dan mudah dipelihara.
+2. Kejelasan Kode: Enum membuat kode menjadi lebih ekspresif dan mudah dibaca, karena nilai-nilainya memiliki nama yang jelas.
+3. Validasi Input: Enum dapat digunakan untuk memvalidasi input pengguna, memastikan bahwa nilai yang diberikan berada dalam set yang terdefinisi.
+4. Penggunaan dalam Switch Statements: Enum sangat cocok untuk digunakan dalam switch statements, yang membuat kode menjadi lebih terorganisir dan mudah dibaca.
+
+==============================================

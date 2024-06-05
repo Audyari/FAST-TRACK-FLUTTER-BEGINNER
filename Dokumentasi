@@ -1,75 +1,43 @@
-Enum di Flutter
+Hello World di Flutter
 
+"preview UI" 
 
 https://dartpad.dev/
 
 =======================
 
-Enum (singkatan dari "enumeration") adalah sebuah tipe data yang memungkinkan kita untuk membuat sekumpulan nilai konstan yang terdefinisi.
-Enum biasanya digunakan untuk mewakili set pilihan atau status yang terbatas.
-
-
-contoh 1 : 
-
-enum DayOfWeek {
-  monday,
-  tuesday,
-  wednesday,
-  thursday,
-  friday,
-  saturday,
-  sunday
-}
+import 'package:flutter/material.dart';
 
 void main() {
-  DayOfWeek today = DayOfWeek.monday;
-  print(today); // Output: DayOfWeek.monday
+  runApp(const MyApp());
 }
 
-==========================================
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-contoh 2 : 
-
-enum DayOfWeek {
-  monday,
-  tuesday,
-  wednesday,
-  thursday,
-  friday,
-  saturday,
-  sunday
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hello World',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Hello World'),
+        ),
+        body: const Center(
+          child: Text(
+            'Hello, World!',
+            style: TextStyle(fontSize: 24.0),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 
-void printDayOfWeek(DayOfWeek day) {
-  print('Today is $day');
-}
+=============================================
 
-void main() {
-  DayOfWeek today = DayOfWeek.monday;
-  print(today); // Output: DayOfWeek.monday
-  
-  switch (today) {
-  case DayOfWeek.monday:
-    print('It\'s Monday');
-    break;
-  case DayOfWeek.tuesday:
-    print('It\'s Tuesday');
-    break;
-  // ... dan seterusnya
-  default:
-    print('Unknown day');
-}
-  
-  printDayOfWeek(DayOfWeek.wednesday); // Output: Today is DayOfWeek.wednesday
-  
-}
+1. MaterialApp
+2. Scaffold
 
-==========================================
-
-1. Kemudahan Pemeliharaan: Enum memungkinkan kita untuk mengelola set pilihan atau status yang terbatas dengan lebih terstruktur dan mudah dipelihara.
-2. Kejelasan Kode: Enum membuat kode menjadi lebih ekspresif dan mudah dibaca, karena nilai-nilainya memiliki nama yang jelas.
-3. Validasi Input: Enum dapat digunakan untuk memvalidasi input pengguna, memastikan bahwa nilai yang diberikan berada dalam set yang terdefinisi.
-4. Penggunaan dalam Switch Statements: Enum sangat cocok untuk digunakan dalam switch statements, yang membuat kode menjadi lebih terorganisir dan mudah dibaca.
-
-==============================================
+=================================

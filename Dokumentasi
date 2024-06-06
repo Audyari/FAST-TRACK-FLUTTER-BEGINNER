@@ -1,4 +1,4 @@
-02 Widget Dasar
+Visible & Invisible Widget
 
 "preview UI" 
 
@@ -6,21 +6,88 @@ https://dartpad.dev/
 
 =======================
 
-1. Text: Widget untuk menampilkan teks. Dapat diatur gaya, ukuran, dan properti lainnya.
-2. Image: Widget untuk menampilkan gambar. Dapat menggunakan gambar lokal atau gambar dari internet.
-3. Icon: Widget untuk menampilkan ikon. Flutter menyediakan banyak ikon bawaan.
-4. Scaffold: Widget dasar untuk membuat struktur halaman aplikasi, termasuk AppBar, Body, dan BottomNavigationBar.
-5. Column dan Row: Widget untuk mengatur tata letak elemen secara vertikal dan horizontal.
-6. Container: Widget untuk membungkus elemen lain dan memberikan styling, padding, margin, dan properti lainnya.
-7. Button: Widget untuk membuat tombol yang dapat disentuh pengguna.
+1. Widget yang Terlihat (Visible Widgets):
+Widget yang Terlihat adalah widget-widget yang secara langsung ditampilkan di layar dan dapat berinteraksi dengan pengguna.
 
-===========================
+contoh button
 
-contoh code : 
+2. Widget yang Tak Terlihat (Invisible Widgets):
+Widget yang Tak Terlihat adalah widget-widget yang tidak secara langsung ditampilkan di layar, tetapi mereka tetap memainkan peran penting dalam struktur dan perilaku aplikasi.
+
+contoh : 
+
+1.Column: Digunakan untuk menyusun widget-widget secara vertikal.
+
+code nya : 
 
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
-import 'package:logger/logger.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+        home: Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Baris 1', style: TextStyle(fontSize: 20)),
+              Text('Baris 2', style: TextStyle(fontSize: 20)),
+              Text('Baris 3', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+
+=============================
+
+2. Row: Digunakan untuk menyusun widget-widget secara horizontal.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+        home: Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Baris 1 ', style: TextStyle(fontSize: 20)),
+              Text('Baris 2 ', style: TextStyle(fontSize: 20)),
+              Text('Baris 3 ', style: TextStyle(fontSize: 20)),
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+=================================
+
+3. Stack: Digunakan untuk menumpuk widget-widget satu di atas yang lain.
+
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,88 +99,177 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hello World',
       home: Scaffold(
-        backgroundColor: kBackgroundColor,
+        body: Stack(
+          children: [
+            // Background Image
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/profile.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+
+            // Centered Content
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Profile Picture
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(''),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16.0),
+
+                  // Name
+                  const Text(
+                    'Audyari Wiyono',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8.0),
+
+                  // Occupation
+                  const Text(
+                    'Software Engineer',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+===========================================
+4. Padding: Digunakan untuk menambahkan padding di sekitar sebuah widget.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
         appBar: AppBar(
-          title: const Text('Hello World'),
-          centerTitle: true,
-          backgroundColor: kAppBarColor,
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: _handleMenuButtonPress,
+          title: const Text('Contoh Padding'),
+        ),
+        body: Padding(  // PADING LUAR
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            color: Colors.blue,
+            child: const Padding(   // PADING DALAM
+              padding: EdgeInsets.all(32.0),
+              child: Text(
+                'Ini adalah teks di dalam container yang di-Padding.',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                ),
+              ),
+            ),
           ),
         ),
-        body: const Center(
-          child: HelloWorldWidget(),
-        ),
-      ),
-    );
-  }
-
-  void _handleMenuButtonPress() {
-    // Aksi yang dilakukan saat tombol menu ditekan
-  }
-}
-
-class HelloWorldWidget extends StatelessWidget {
-  const HelloWorldWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 300,
-      color: Colors.blue,
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Hello World',
-            style: kHelloWorldTextStyle,
-          ),
-          SizedBox(height: 16.0),
-          ElevatedButtonWidget(),
-        ],
       ),
     );
   }
 }
-
-class ElevatedButtonWidget extends StatelessWidget {
-  const ElevatedButtonWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: kElevatedButtonColor,
-        textStyle: kElevatedButtonTextStyle,
-      ),
-      onPressed: _handleElevatedButtonPress,
-      child: const Text('Elevated Button'),
-    );
-  }
-
-  void _handleElevatedButtonPress() {
-    Logger().i("Tombol Evaluasi ditekan!");
-  }
-}
-
-// Konstanta
-const kBackgroundColor = Color.fromARGB(126, 83, 49, 136);
-const kAppBarColor = Color.fromARGB(137, 83, 156, 23);
-const kHelloWorldTextStyle = TextStyle(
-  fontSize: 24.0,
-  fontWeight: FontWeight.bold,
-  color: Colors.white,
-);
-const kElevatedButtonColor = Colors.green;
-const kElevatedButtonTextStyle = TextStyle(
-  color: Colors.white,
-  fontSize: 10,
-  fontStyle: FontStyle.normal,
-);
-
 
 =====================================
+5. Expanded: Digunakan untuk membuat sebuah widget mengisi ruang yang tersedia.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Contoh Expanded'),
+        ),
+        body: Row(
+          children: [
+            Container(
+              color: Colors.blue,
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Container 1',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                color: Colors.green,
+                child: const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Container 2 yang di-Expanded',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.red,
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Container 3',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+=================================

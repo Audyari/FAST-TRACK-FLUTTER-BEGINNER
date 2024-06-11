@@ -1,10 +1,12 @@
-Gread View Di Flutter
+Extract Widget
 
 "preview UI" 
 
 https://dartpad.dev/
 
-ada 3 : metode 
+Ekstrak Widget (Extract Widget) adalah proses memecah UI aplikasi menjadi komponen-komponen kecil yang dapat 
+digunakan kembali (reusable). Tujuannya adalah untuk membuat kode menjadi lebih modular, terstruktur, dan mudah untuk dipelihara.
+
 
 =======================
 
@@ -267,3 +269,102 @@ class GridViewExample extends StatelessWidget {
 }
 
 =====================================================
+Misalkan kita memiliki sebuah halaman yang terdiri dari beberapa komponen, seperti AppBar, Body, dan Footer. 
+Tanpa menggunakan Extract Widget, kode untuk halaman tersebut mungkin akan terlihat seperti ini:
+
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('My App'),
+    ),
+    body: Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(16.0),
+          child: Text('This is the body content.'),
+        ),
+        SizedBox(height: 16.0),
+        ElevatedButton(
+          onPressed: () {
+            // Aksi tombol
+          },
+          child: Text('Click me'),
+        ),
+      ],
+    ),
+    bottomNavigationBar: BottomAppBar(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Text('This is the footer.'),
+      ),
+    ),
+  );
+}
+
+=============================================
+
+Namun, dengan menggunakan teknik Extract Widget, kita dapat memecah kode tersebut menjadi 
+beberapa Widget yang dapat digunakan kembali:
+
+// AppBarWidget.dart
+class AppBarWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text('My App'),
+    );
+  }
+}
+
+// BodyWidget.dart
+class BodyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(16.0),
+          child: Text('This is the body content.'),
+        ),
+        SizedBox(height: 16.0),
+        ElevatedButton(
+          onPressed: () {
+            // Aksi tombol
+          },
+          child: Text('Click me'),
+        ),
+      ],
+    );
+  }
+}
+
+// FooterWidget.dart
+class FooterWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Text('This is the footer.'),
+      ),
+    );
+  }
+}
+
+// MainPage.dart
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBarWidget(),
+      body: BodyWidget(),
+      bottomNavigationBar: FooterWidget(),
+    );
+  }
+}
+
+================================================
+
+
+
+

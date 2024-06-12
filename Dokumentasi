@@ -1,370 +1,209 @@
-Extract Widget
+Mapping Collections di flutter
 
 "preview UI" 
 
 https://dartpad.dev/
 
-Ekstrak Widget (Extract Widget) adalah proses memecah UI aplikasi menjadi komponen-komponen kecil yang dapat 
-digunakan kembali (reusable). Tujuannya adalah untuk membuat kode menjadi lebih modular, terstruktur, dan mudah untuk dipelihara.
+mapping collections adalah proses untuk mengubah sebuah koleksi data (seperti list atau map)
+menjadi widget-widget yang dapat ditampilkan di UI.
 
 
 =======================
 
-GridDelegate adalah sebuah abstraksi dalam Flutter yang digunakan untuk mengatur tata letak (layout) dari widget GridView. 
-
-1. SliverGridDelegateWithFixedCrossAxisCount:
-
-Digunakan untuk menentukan jumlah kolom yang tetap dalam grid.
-Properti crossAxisCount digunakan untuk menentukan jumlah kolom.
-
-code : 
+contoh tanpa parameter : 
 
 import 'package:flutter/material.dart';
-// Pastikan Anda mengimpor kelas GlobalThemeData
-import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp() as Widget);
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
-  Widget build(BuildContext context) {
-   return const MaterialApp(
-      title: 'GridView Example',
-      home: GridViewExample(),
-    );
-  }
-}
-
-class GridViewExample extends StatelessWidget {
-  const GridViewExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('GridView Example'),
-      ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // Jumlah kolom dalam grid
-          crossAxisSpacing: 10.0, // Jarak antar kolom
-          mainAxisSpacing: 10.0, // Jarak antar baris
-        ),
-        itemCount: 12, // Jumlah item dalam grid
-        itemBuilder: (context, index) {
-          return Container(
-            color: Colors.primaries[index % Colors.primaries.length], // Warna latar belakang
-            child: Center(
-              child: Text(
-                'Item ${index + 1}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-================================================
-
-2. SliverGridDelegateWithMaxCrossAxisExtent:
-
-
-Digunakan untuk menentukan ukuran maksimum lebar setiap item grid.
-Properti maxCrossAxisExtent digunakan untuk menentukan ukuran maksimum
-
-
-code nya : 
-
-
-
-import 'package:flutter/material.dart';
-// Pastikan Anda mengimpor kelas GlobalThemeData
-import 'package:firebase_core/firebase_core.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp() as Widget);
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-   return const MaterialApp(
-      title: 'GridView Example',
-      home: GridViewExample(),
-    );
-  }
-}
-
-class GridViewExample extends StatelessWidget {
-  const GridViewExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('GridView Example'),
-      ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200.0, // Ukuran maksimum lebar setiap item grid
-          crossAxisSpacing: 10.0, // Jarak antar kolom
-          mainAxisSpacing: 10.0, // Jarak antar baris
-        ),
-        itemCount: 20, // Jumlah item dalam grid
-        itemBuilder: (context, index) {
-          return Container(
-            color: Colors.primaries[index % Colors.primaries.length], // Warna latar belakang
-            child: Center(
-              child: Text(
-                'Item ${index + 1}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-==============================================
-3. SliverGridDelegateWithChildAspectRatio:
-
-Digunakan untuk menentukan rasio aspek (lebar/tinggi) setiap item grid.
-Properti childAspectRatio digunakan untuk menentukan rasio aspek.
-
-code nya : 
-
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
-// Pastikan Anda mengimpor kelas GlobalThemeData
-import 'package:firebase_core/firebase_core.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp() as Widget);
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
- @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Card(
-          elevation: 8.0,
-          child: GridView.builder(
-            padding: const EdgeInsets.all(12.0),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisSpacing: 12.0,
-              crossAxisSpacing: 12.0,
-            ),
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              final math.Random random = math.Random(index);
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
-                  gradient: const RadialGradient(
-                    colors: <Color>[Color(0x0F88EEFF), Color(0x2F0099BB)],
-                  ),
-                ),
-                child: FlutterLogo(
-                  style: FlutterLogoStyle
-                      .values[random.nextInt(FlutterLogoStyle.values.length)],
-                ),
-              );
-            },
-          ),
-        ),
-      ),
+      title: 'Mapping Collections Example',
+      home: MyHomePage(),
     );
   }
 }
 
-
-
-=========================================================
-
-ini contoh simple gread view tanpa motode :
-
-import 'package:flutter/material.dart';
-// Pastikan Anda mengimpor kelas GlobalThemeData
-import 'package:firebase_core/firebase_core.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp() as Widget);
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-   return const MaterialApp(
-      title: 'GridView Example',
-      home: GridViewExample(),
-    );
-  }
-}
-
-class GridViewExample extends StatelessWidget {
-  const GridViewExample({super.key});
+class MyHomePage extends StatelessWidget {
+  final List<String> items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+    'Item 6'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Testing Penggunaan GridView'),
+        title: Text('Mapping Collections Example'),
       ),
-      body: GridView.count(
-        crossAxisCount: 3, // Jumlah kolom dalam grid
-        crossAxisSpacing: 10.0, // Jarak antar kolom
-        mainAxisSpacing: 10.0, // Jarak antar baris
-        padding: const EdgeInsets.all(16.0),
-        children: List.generate(
-          12, // Jumlah item dalam grid
-          (index) => Container(
-            color: Colors.primaries[index % Colors.primaries.length], // Warna latar belakang
-            child: Center(
-              child: Text(
-                'Item ${index + 1}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(items[index]),
+                );
+              },
             ),
           ),
-        ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: items.map((item) {
+                return Card(
+                  child: Center(
+                    child: Text(item),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-=====================================================
-Misalkan kita memiliki sebuah halaman yang terdiri dari beberapa komponen, seperti AppBar, Body, dan Footer. 
-Tanpa menggunakan Extract Widget, kode untuk halaman tersebut mungkin akan terlihat seperti ini:
 
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('My App'),
-    ),
-    body: Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(16.0),
-          child: Text('This is the body content.'),
-        ),
-        SizedBox(height: 16.0),
-        ElevatedButton(
-          onPressed: () {
-            // Aksi tombol
-          },
-          child: Text('Click me'),
-        ),
-      ],
-    ),
-    bottomNavigationBar: BottomAppBar(
-      child: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Text('This is the footer.'),
-      ),
-    ),
-  );
+==========================================
+
+contoh dengan parameter : 
+
+menggunakkan GridView.builder() atau ListView
+
+dengan ListView :
+
+====================================code nya 
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
 }
 
-=============================================
-
-Namun, dengan menggunakan teknik Extract Widget, kita dapat memecah kode tersebut menjadi 
-beberapa Widget yang dapat digunakan kembali:
-
-// AppBarWidget.dart
-class AppBarWidget extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text('My App'),
+    return MaterialApp(
+      title: 'Mapping Collections Example',
+      home: MyHomePage(),
     );
   }
 }
 
-// BodyWidget.dart
-class BodyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(16.0),
-          child: Text('This is the body content.'),
-        ),
-        SizedBox(height: 16.0),
-        ElevatedButton(
-          onPressed: () {
-            // Aksi tombol
-          },
-          child: Text('Click me'),
-        ),
-      ],
-    );
-  }
-}
+class MyHomePage extends StatelessWidget {
+  final List<Map<String, dynamic>> items = [
+    {'title': 'Item 1', 'isImportant': true},
+    {'title': 'Item 2', 'isImportant': false},
+    {'title': 'Item 3', 'isImportant': true},
+    {'title': 'Item 4', 'isImportant': false},
+  ];
 
-// FooterWidget.dart
-class FooterWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Text('This is the footer.'),
-      ),
-    );
-  }
-}
-
-// MainPage.dart
-class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(),
-      body: BodyWidget(),
-      bottomNavigationBar: FooterWidget(),
+      appBar: AppBar(
+        title: Text('Mapping Collections with Parameters'),
+      ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return ListTile(
+            title: Text(item['title']),
+            trailing: item['isImportant']
+                ? Icon(Icons.star, color: Colors.amber)
+                : null,
+          );
+        },
+      ),
     );
   }
 }
 
-================================================
+===============================================
+
+dengan GridView
+
+contoh code nya :
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Mapping Collections Example',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  final List<Map<String, dynamic>> items = [
+    {'title': 'Item 1', 'isImportant': true},
+    {'title': 'Item 2', 'isImportant': false},
+    {'title': 'Item 3', 'isImportant': true},
+    {'title': 'Item 4', 'isImportant': false},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mapping Collections Example'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return ListTile(
+                  title: Text(item['title']),
+                  trailing: item['isImportant']
+                      ? Icon(Icons.star, color: Colors.amber)
+                      : null,
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return Card(
+                  child: Center(
+                    child: Text(item['title']),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 
-
-
+======================================================
